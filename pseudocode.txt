@@ -2,11 +2,13 @@
 Models
   Snake
   Grid
+    Cell
   Food
 
 Views
   Snake
   Grid
+    Cell
   Food
 
 Controllers
