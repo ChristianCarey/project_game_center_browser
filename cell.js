@@ -4,16 +4,7 @@ var cell = {
 
   totalCount: function() {
     return this.model.totalCount;
-  },
-
-  create: function(coords, contents){
-    var cell = this.model.create(coords, contents);
-    return this.view.create(cell);
   }
-
-  //init: function() {
-    //this.model.init();
-  //}
 
 }
 
@@ -38,4 +29,5 @@ cell.view = {
   create: function(cell) {
     return $("<div>").addClass("cell");
   }
+
 }

@@ -1,4 +1,4 @@
 
 $(document).ready(function(){
-  cell.init();
+  grid.create(10, 10);
 })
