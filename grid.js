@@ -34,20 +34,24 @@ grid.model = {
 grid.view = {
 
   cellFactory: cell.view,
-
-  $container: $(".grid"),
+  
+  // TODO make init function to find jquery objects
 
   create: function(rows) {
-    var vRows = rows.map(function(row){
-      return this._createRow(row);
+    var $grid = $(".grid"),
+        rowHeight = $grid.height() / rows.length;
+    rows.forEach(function(row){
+      $grid.append(this._createRow(row, rowHeight));
     }, this);
-    this.$container.append(vRows);
   },
 
-  _createRow: function(row) {
-    return row.map(function(cell){
-      return this.cellFactory.create(cell);
+  _createRow: function(row, height) {
+    var $row = $("<div>")
+      .addClass("row")
+      .height(height);
+    row.forEach(function(cell){
+       $row.append(this.cellFactory.create(cell));
     }, this);
+    return $row;
   }
-
 }
