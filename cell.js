@@ -3,11 +3,13 @@
 var cell = {
 
   totalCount: function() {
-    return _model.totalCount;
+    return this.model.totalCount;
   },
 
-  _model: this.model
-
+  create: function(coords, contents){
+    var cell = this.model.create(coords, contents);
+    return this.view.create(cell);
+  }
 
   //init: function() {
     //this.model.init();
@@ -19,11 +21,7 @@ cell.model = {
 
   totalCount: 0,
 
-  newCells: function(n) {
-
-  },
-
-  _new: function(coords, contents) {
+  create: function(coords, contents) {
     return new this._constructor(coords, contents);
   },
 
@@ -35,3 +33,9 @@ cell.model = {
 
 };
 
+cell.view = {
+
+  create: function(cell) {
+    return $("<div>").addClass("cell");
+  }
+}
