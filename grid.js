@@ -2,12 +2,16 @@
 
 var grid = {
 
+  init: function() {
+    this.view.init();
+  },
+
   create: function(x, y) {
     var grid = this.model.create(x, y);
     this.view.create(grid);
   }
 
-}
+};
 
 grid.model = {
 
@@ -34,14 +38,15 @@ grid.model = {
 grid.view = {
 
   cellFactory: cell.view,
-  
-  // TODO make init function to find jquery objects
+
+  init: function() {
+    this.$container = $(".grid");
+  },
 
   create: function(rows) {
-    var $grid = $(".grid"),
-        rowHeight = $grid.height() / rows.length;
+    var rowHeight = this.$container.height() / rows.length;
     rows.forEach(function(row){
-      $grid.append(this._createRow(row, rowHeight));
+      this.$container.append(this._createRow(row, rowHeight));
     }, this);
   },
 
