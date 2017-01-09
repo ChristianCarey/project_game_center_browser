@@ -9,6 +9,14 @@ var snakeController = {
     this.view.addSnake(head);
   },
 
+  move: function() {
+    var snake = this.model.move();
+    if (snake) {
+      this.view.move(snake);
+    }
+    return snake;
+  },
+
   eventHandlers: {
 
     up: { 

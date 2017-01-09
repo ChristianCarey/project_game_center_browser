@@ -8,19 +8,30 @@ var gameController = {
 
   foodController: foodController,
 
+  model: gameModel,
+
   init: function() {
-    this.gridController.init();
+    this.gridController.init(foodController);
     this.snakeController.init();
     this.foodController.init();
   },
 
-  addFood: function() {
-    //TODO
-    
+  play: async function() {
+    if (!this.model.started) {
+      var gameOver = false;
+
+      this.model.started = true;
+
+      while (!gameOver) {
+        snakeController.move();
+        await this.sleep(CONFIG.game.speed);
+        gameOver = this.model.gameOver();
+      }
+    }
   },
 
-  addSnake: function() {
-    //TODO
+  sleep: function(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 };
 

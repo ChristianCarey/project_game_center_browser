@@ -6,8 +6,9 @@ var gridController = {
 
   model: gridModel,
 
-  init: function(){
+  init: function(foodController){
     var grid = this.model.create();
+    this.model.init(foodController);
     this.view.init(grid);
   }
 }

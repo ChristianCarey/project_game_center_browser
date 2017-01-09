@@ -23,10 +23,7 @@ var snakeView = {
         var key = handlers[handler].key,
             callback = handlers[handler].callback;
         if (e.which === handlers[handler].key) {
-          var snake = callback.call();
-          if (snake) {
-            snakeView.move(snake);
-          }
+          callback.call();
         }
       }  
     });   
@@ -43,6 +40,7 @@ var snakeView = {
   _removeTail: function() {
     var $tail = $('.tail');
     $tail.removeClass("snake"); 
+    $tail.removeClass("tail"); 
   },
 
   _updateTail: function(tail) {
@@ -56,6 +54,7 @@ var snakeView = {
 
   _addHead: function(head) {
     var $head = $(head.getID());
+    $head.removeClass("food");
     $head.addClass("snake");
   }
 }

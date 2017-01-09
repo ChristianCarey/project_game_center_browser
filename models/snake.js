@@ -8,6 +8,8 @@ var snakeModel = {
 
   segments: [],
 
+  heading: "up",
+
   create: function(){
     var head = this.segment.create({
       x: CONFIG.snake.startingX,
@@ -18,42 +20,64 @@ var snakeModel = {
 
     this.segments.push(head);
 
-    this.grid.addSnake(head);
+    this.grid.addHead(head);
     return head;
   },
 
   moveUp: function() {
-    var newHead = this._newUp();
-    return this._move(newHead);
+    if (this.heading !== "down") {
+      this.heading = "up";
+    }
   },
 
   moveLeft: function() {
-    var newHead = this._newLeft();
-    return this._move(newHead);
+    if (this.heading !== "right") {
+      this.heading = "left";
+    }
   },
 
   moveDown: function() {
-    var newHead = this._newDown();
-    console.log(newHead);
-    return this._move(newHead);
+    if (this.heading !== "up") {
+      this.heading = "down";
+    }
   },
 
   moveRight: function() {
-    var newHead = this._newRight();
-    return this._move(newHead);
+    if (this.heading !== "left") {
+      this.heading = "right";
+    }
   },
 
-  _move: function(newHead) {
-    if (this._isInBounds(newHead)) {
-      this._removeTail();
-      this._addHead(newHead);
-      if (this._isOnFood()) {
-        this._eat();
-      }
-      return this.segments;
-    } else {
-      return false;
+  move: function() {
+    var newHead;
+    if (this.heading === "up") {
+      newHead = this._newUp();
+    } else if (this.heading === "left") {
+      newHead = this._newLeft();
+    } else if (this.heading === "right") {
+      newHead = this._newRight();
+    } else if (this.heading === "down") {
+      newHead = this._newDown();
     }
+    if (this._isInBounds(newHead)) {
+      if (!this._isOnFood(newHead)) {
+        this._removeTail(); 
+      }
+      if (!this._isOnSnake(newHead)) {
+        this._addHead(newHead);
+        return this.segments;
+      } 
+    } 
+    this.dead = true;
+    return false;
+  },
+
+  isDead: function() {
+    return this.dead;
+  },
+
+  _isDeadly(head) {
+    return !this._isInBounds(head) || this._isOnSnake(head);
   },
 
   _isInBounds(head) {
@@ -67,17 +91,17 @@ var snakeModel = {
     return inBounds;
   },
 
-  _isOnFood: function() {
-    var head = this._head();
+  _isOnSnake(head) {
+    return this.grid.snakeOnCell(head.x, head.y);
+  },
+
+  _isOnFood: function(head) {
     return this.grid.foodOnCell(head.x, head.y)
   },
 
-  _eat: function() {
-    console.log("eating");
-  },
-
   _removeTail: function() {
-    this.segments.pop();
+    var tail = this.segments.pop();
+    this.grid.removeCell(tail);
   },
 
   _head: function() {
@@ -86,6 +110,7 @@ var snakeModel = {
 
   _addHead: function(head) {
     this.segments.unshift(head);
+    this.grid.addHead(head);
   },
 
   _newUp: function() {

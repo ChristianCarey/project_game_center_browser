@@ -6,10 +6,18 @@ var foodController = {
 
   view: foodView,
 
+  grid: gridModel,
+
   init: function() {
-    var x = CONFIG.food.startingX;
-    var y = CONFIG.food.startingY;
+    var x = CONFIG.food.startingX,
+        y = CONFIG.food.startingY;
     this._placeFood(x, y)
+  },
+
+  newFood: function() {
+    var x = this.grid.randomNonSnakeColumn(),
+        y = this.grid.randomNonSnakeRow();
+    this._placeFood(x, y);
   },
 
   _placeFood: function(x, y) {
