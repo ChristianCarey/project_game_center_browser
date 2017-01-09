@@ -1,27 +1,21 @@
-
-* {
-  box-sizing: border-box;
-}
-
 main {
   display: flex;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .grid {
   height: 600px;
   width: 600px;
   background-color: #8EB367;
-}
+  border: 1px solid black; }
 
 .row {
-  display: flex;
-}
+  display: flex; }
 
 .cell {
   flex-grow: 1;
-  height: 100%;
-  border: 1px solid #6E9642;
-}
+  border: 1px solid black; }
+
+.snake {
+  background-color: red; }
 
 /*# sourceMappingURL=main.css.map */

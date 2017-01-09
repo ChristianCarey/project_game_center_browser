@@ -1,4 +1,5 @@
+"use strict";
 
 $(document).ready(function(){
-  game.play();
+  gameController.init();
 })

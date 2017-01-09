@@ -8,4 +8,18 @@ main {
   height: 600px;
   width: 600px;
   background-color: #8EB367;
+  border: 1px solid black;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  flex-grow: 1;
+  border: 1px solid black;
+}
+
+.snake {
+  background-color: red;
 }
