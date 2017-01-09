@@ -14,10 +14,12 @@ var foodController = {
     this._placeFood(x, y)
   },
 
-  newFood: function() {
-    var x = this.grid.randomNonSnakeColumn(),
-        y = this.grid.randomNonSnakeRow();
-    this._placeFood(x, y);
+  newFood: function(oldFood) {
+    var cell = this.grid.randomCell();
+    while (this.grid.snakeOnCell(cell.x, cell.y) || (cell.x === oldFood.x && cell.y === oldFood.y)) {
+      cell = this.grid.randomCell();
+    }
+    this._placeFood(cell.x, cell.y);
   },
 
   _placeFood: function(x, y) {

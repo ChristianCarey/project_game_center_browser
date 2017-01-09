@@ -26,7 +26,7 @@ var gridModel = {
   addHead: function(head) {
     var cell = this._findCell(head.x, head.y)
     if (cell.contents === "food") {
-      this.foodController.newFood();
+      this.foodController.newFood(cell);
     } 
     this._setCell(head);
   },
@@ -52,11 +52,17 @@ var gridModel = {
     this._setCell(newCell);
   },
 
-  randomNonSnakeColumn: function() {
+  randomCell: function() {
+    var x = this._randomColumn(),
+        y = this._randomRow();
+    return this._findCell(x, y)
+  },
+
+  _randomColumn: function() {
     return Math.floor(Math.random() * (this.width - 1));
   },
 
-  randomNonSnakeRow: function() {
+  _randomRow: function() {
     return Math.floor(Math.random() * (this.height - 1));
   },
 

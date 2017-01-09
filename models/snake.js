@@ -8,8 +8,6 @@ var snakeModel = {
 
   segments: [],
 
-  heading: "up",
-
   create: function(){
     var head = this.segment.create({
       x: CONFIG.snake.startingX,

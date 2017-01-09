@@ -12,13 +12,13 @@ main {
   display: flex; }
 
 .cell {
-  flex-grow: 1;
-  border: 1px solid black; }
+  flex-grow: 1; }
 
 .snake {
   background-color: red; }
 
 .food {
-  background-color: yellow; }
+  background-color: yellow;
+  border-radius: 100%; }
 
 /*# sourceMappingURL=main.css.map */

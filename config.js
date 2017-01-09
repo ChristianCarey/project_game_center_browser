@@ -1,7 +1,7 @@
 CONFIG = {
   grid: {
-    height: 20,
-    width: 20
+    height: 30,
+    width: 30
   },
 
   snake: {
@@ -15,6 +15,6 @@ CONFIG = {
   },
 
   game: {
-    speed: 100 // milliseconds per frame
+    speed: 80 // milliseconds per frame
   }
 }
