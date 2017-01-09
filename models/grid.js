@@ -20,8 +20,18 @@ var gridModel = {
   },
 
   addSnake: function(head) {
-    var cell = this._findCell(head.x, head.y)
+    var cell = this._findCell(head.x, head.y);
     cell.contents = head;
+  },
+
+  placeFood(food) {
+    var cell = this._findCell(food.x, food.y);
+    cell.contents = "food";
+  },
+
+  foodOnCell: function(x, y) {
+    var cell = this._findCell(x, y);
+    return cell.contents === "food";
   },
 
   _createRow: function(numCells, rowNum) {

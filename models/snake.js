@@ -47,6 +47,9 @@ var snakeModel = {
     if (this._isInBounds(newHead)) {
       this._removeTail();
       this._addHead(newHead);
+      if (this._isOnFood()) {
+        this._eat();
+      }
       return this.segments;
     } else {
       return false;
@@ -62,6 +65,15 @@ var snakeModel = {
       inBounds = false;
     }
     return inBounds;
+  },
+
+  _isOnFood: function() {
+    var head = this._head();
+    return this.grid.foodOnCell(head.x, head.y)
+  },
+
+  _eat: function() {
+    console.log("eating");
   },
 
   _removeTail: function() {

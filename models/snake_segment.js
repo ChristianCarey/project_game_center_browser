@@ -8,7 +8,6 @@ var snakeSegmentModel = {
     return new this._constructor(params, this.cell);
   },
 
-  // TODO this inherits from cell
   _constructor: function SnakeSegment(params, cell) {
     var cell = cell.create(
       params.x,
