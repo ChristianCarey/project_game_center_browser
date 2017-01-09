@@ -4,9 +4,13 @@ var gridModel = {
 
   cell: cellModel,
 
+  width: CONFIG.grid.width,
+
+  height: CONFIG.grid.height,
+
   create: function(x, y) {
-    x = x || CONFIG.grid.width;
-    y = y || CONFIG.grid.height;
+    x = x || this.width;
+    y = y || this.height;
     var rows = new Array(y);
     for(var rowNum = 0; rowNum < y; rowNum++){
       rows[rowNum] = this._createRow(x, rowNum);

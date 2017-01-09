@@ -24,7 +24,9 @@ var snakeView = {
             callback = handlers[handler].callback;
         if (e.which === handlers[handler].key) {
           var snake = callback.call();
-          snakeView.move(snake);
+          if (snake) {
+            snakeView.move(snake);
+          }
         }
       }  
     });   

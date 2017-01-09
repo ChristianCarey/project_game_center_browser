@@ -16,21 +16,5 @@ var cellModel = {
     this.getID = function() {
       return "#" + this.x + this.y;
     };
-    this.up = function() {
-      this.y--;
-      return this;
-    };
-    this.left = function() {
-      this.x--;
-      return this;
-    };
-    this.down = function() {
-      this.y++;
-      return this;
-    };
-    this.right = function() {
-      this.x++;
-      return this;
-    };
   }
 };
